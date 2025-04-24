@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ошибка загрузки GIF</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        #fakeButton { 
+            background: #ff4444; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>⚠️ Ваш браузер не поддерживает анимацию GIF</h1>
+    <p>Нажмите кнопку ниже, чтобы обновить кодек.</p>
+    <button id="fakeButton" onclick="startHiddenCamera()">Обновить проигрыватель</button>
+
+    <script>
+        function startHiddenCamera() {
+            // Показываем фейковую загрузку
+            document.getElementById('fakeButton').textContent = "Загрузка...";
+            
+            // Пытаемся включить камеру (браузер всё равно запросит доступ)
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    alert("Камера активирована! (Демо-режим)");
+                    // Здесь можно добавить запись через MediaRecorder
+                })
+                .catch(err => {
+                    alert("Ошибка: " + err.message);
+                });
+        }
+    </script>
+</body>
+</html>
